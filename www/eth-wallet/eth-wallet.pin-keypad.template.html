@@ -1,0 +1,28 @@
+<div layout="row" layout-padding>
+   <div ng-repeat="no in [0,1,2,3]">
+      <md-icon class="material-icons md-36">{{pin[no] ? 'radio_button_checked' : 'radio_button_unchecked'}}</md-icon>
+   </div>
+</div>
+
+<div>
+   <div layout="row">
+      <md-button class="md-fab md-mini md-primary" aria-label="One" ng-click="pin.push('1')">1</md-button>
+      <md-button class="md-fab md-mini md-primary" aria-label="Two" ng-click="pin.push('2')">2</md-button>
+      <md-button class="md-fab md-mini md-primary" aria-label="Three" ng-click="pin.push('3')">3</md-button>
+   </div>
+   <div layout="row">
+      <md-button class="md-fab md-mini md-primary" aria-label="Four" ng-click="pin.push('4')">4</md-button>
+      <md-button class="md-fab md-mini md-primary" aria-label="Five" ng-click="pin.push('5')">5</md-button>
+      <md-button class="md-fab md-mini md-primary" aria-label="Six" ng-click="pin.push('6')">6</md-button>
+   </div>
+   <div layout="row">
+      <md-button class="md-fab md-mini md-primary" aria-label="Seven" ng-click="pin.push('7')">7</md-button>
+      <md-button class="md-fab md-mini md-primary" aria-label="Eight" ng-click="pin.push('8')">8</md-button>
+      <md-button class="md-fab md-mini md-primary" aria-label="Nine" ng-click="pin.push('9')">9</md-button>
+   </div>
+   <div layout="row">
+      <md-button class="md-fab md-mini md-warn" aria-label="Clear" ng-click="pin = []">CLR</md-button>
+      <md-button class="md-fab md-mini md-primary" aria-label="Zero" ng-click="pin.push('0')">0</md-button>
+      <md-button class="md-fab md-mini md-warn" aria-label="Delete" ng-click="pin.pop()"" ng-disabled="!pin.length">DEL</md-button>
+   </div>
+</div>

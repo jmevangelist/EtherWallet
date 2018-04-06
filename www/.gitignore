@@ -1,0 +1,9 @@
+logs/*
+!.gitkeep
+node_modules/
+bower_components/
+platforms/
+plugins/
+.DS_Store
+.idea
+!fetch.json

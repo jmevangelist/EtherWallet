@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="nixEtherWallet">
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' android-webview-video-poster: data: gap: https://ssl.gstatic.com 'unsafe-eval' https://*; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data: ; media-src * blob://* ;">
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="dependencies/bower_components/angular-material/angular-material.min.css">
+        
+        <title>nix</title>
+    
+        <script src = "dependencies/bower_components/angular/angular.js"></script>
+        <script src = "dependencies/bower_components/angular-route/angular-route.js"></script>
+        <script src = "dependencies/bower_components/angular-messages/angular-messages.min.js"></script>
+        <script src = "dependencies/bower_components/angular-resource/angular-resource.js"></script>
+        <script src = "dependencies/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src = "dependencies/bower_components/angular-aria/angular-aria.min.js"></script>
+        <script src = "dependencies/bower_components/angular-material/angular-material.min.js"></script>
+        <script src = "dependencies/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+
+
+        <script src="dependencies/tweetnacl/nacl.min.js"></script>
+        <script src="dependencies/crypto-js/crypto-js.js"></script>
+        <script src="dependencies/eth-lightwallet/dist/lightwallet.js"></script>
+        <script src="dependencies/instascan/instascan.min.js"></script>
+
+        <script src="app.module.js"></script>
+        <script src="app.config.js"></script>
+        
+        <script src="navigator/navigator.module.js"></script>
+        <script src="navigator/navigator.component.js"></script>
+        <script src="navigator/navigator.show-loading-screen.factory.js"></script>
+
+        <script src="eth-wallet/eth-wallet.module.js"></script>
+        <script src="eth-wallet/eth-wallet-information.module.js"></script>
+        <script src="eth-wallet/eth-wallet-information.component.js"></script>
+        <script src="eth-wallet/eth-wallet.wallet.factory.js"></script>
+        <script src="eth-wallet/eth-wallet.current-wallet.service.js"></script>
+        <script src="eth-wallet/eth-wallet.show-pin-interface.factory.js"></script>
+        <script src="eth-wallet/eth-wallet-setup.component.js"></script>
+        <script src="eth-wallet/eth-wallet.pin-keypad.directive.js"></script>
+        <script src="eth-wallet/get-eth-rate.factory.js"></script>
+        <script src="eth-wallet/block-explorer.factory.js"></script>
+        <script src="eth-wallet/send-prompt.factory.js"></script>
+        <script src="eth-wallet/send-coins.component.js"></script>
+        <script src="eth-wallet/view-transactions.component.js"></script>
+        <script src="eth-wallet/view-tx-details.factory.js"></script>
+
+
+    </head>
+    <body>
+        <navigator></navigator>
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

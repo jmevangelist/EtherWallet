@@ -1,0 +1,115 @@
+<div layout="column" layout-fill>
+   
+   <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+         <h2 class="md-title">{{title[step]}}</h2>         
+      </div>
+
+   </md-toolbar>
+
+   <md-content layout="column" class="padded" flex>
+      
+      <div layout="column" flex ng-show="step == 0">
+         
+         <div class="md-body-1">By clicking continue, you agree to our privacy policy and terms of service.</div>
+
+         <md-button class="md-primary">Privacy Policy</md-button>
+         <md-button class="md-primary">Terms of Service</md-button>
+
+         <div flex></div>
+
+      </div>
+
+      <div layout="column" flex ng-show="step == 1">
+
+         <div flex="5"></div>         
+         
+         <div layout="column" layout-align="center center">
+            <img src="css/res/ether-wallet-banner.png" class="ether-wallet-banner">
+         </div>
+
+         <div flex="5"></div>
+         
+         <md-button class="md-primary" ng-click="type='new'">Generate New Wallet</md-button>
+         <div ng-show="type=='new'" layout-padding class="md-body-1">
+            We will create a new wallet for you using 12 randomly selected words (seed). 
+         </div>
+         <md-button class="md-primary" ng-click="type='restore'">Restore Wallet from Backup</md-button>
+         <div ng-show="type=='restore'" layout-padding>
+            <div class="md-body-1">Please enter your backup phrase</div>
+            <md-input-container class="md-block">
+              <label>Backup Phrase</label>
+              <textarea ng-model="seed" md-detect-hidden="true" rows="2"></textarea>
+            </md-input-container>
+         </div>
+
+         <div flex></div>
+
+      </div>
+
+      <div layout="column" flex ng-show="step == 2 && type=='new'">
+         
+         <div class="md-subheader">Your backup phrase:</div>
+         
+         <p class="md-title">{{seed}}</p>
+         
+         <p class="md-body-1">
+            These words are randomly selected to create your wallet keys. <strong>Please write them down and store them somewhere safe.</strong> If you lose this phrase and your wallet is wiped from the device, there is no way for you to backup your wallet and you will lose access to your funds. Your wallet backup phrase (wallet seed) is your sole responsibility. For security reasons we don't keep your wallet keys and they are never sent online. <br>
+
+            For more information about the creation of wallets from 12-word seeds please see <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">Hierarchical Deterministic Wallets</a>.
+         </p>
+
+      </div>
+
+      <div layout="column" flex ng-show="step == 3 && type=='new'">
+         
+         <div class="md-subheader">Verify backup phrase:</div>
+         
+         <div class="md-body-1">Please enter your backup phrase to make sure that your copy is correct.</div>
+         
+         <md-input-container class="md-block">
+           <label>Backup Phrase</label>
+           <textarea ng-model="verificationSeed" md-detect-hidden="true" rows="2"></textarea>
+         </md-input-container>
+
+         <div flex></div>
+
+      </div>
+
+      <div layout="column" layout-align="center center" flex ng-show="step == 4">
+         
+         <div class="md-title">Enter Pin</div>
+         <pin-keypad pin="pin"></pin-keypad>
+
+      </div>
+
+      <div layout="column" layout-align="center center" flex ng-show="step == 5">
+         
+         <div class="md-title">Confirm Pin</div>
+         <pin-keypad pin="confirmationPin"></pin-keypad>
+
+      </div>
+
+
+      <div ng-hide="step > 5" layout="column">
+         <md-divider></md-divider>
+
+         <div layout="row">
+            <div><md-button class="md-warn" ng-click="back()" ng-hide="!step">Back</md-button></div>
+            <div flex></div>
+            <div><md-button class="md-primary" ng-click="continue()" ng-disabled="disableContinue()">Continue</md-button></div>
+         </div>
+      </div>
+
+      <div flex layout="column" ng-show="step == 6">
+         
+         <div flex></div>
+         <p class="md-title">Creating your Ether Wallet</p>
+         <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+         <div flex></div>
+
+      </div>
+
+   </md-content>
+
+</div>

@@ -1,0 +1,24 @@
+<div layout-fill layout="column">
+   <simple-toolbar title="'Transaction History'"></simple-toolbar>
+
+   <md-content flex>
+      
+      <md-list>
+         
+         <md-list-item ng-repeat="tx in transactions | orderBy:'-timeStamp'" class="md-3-line" ng-click="viewTx(tx)">
+            <div class="md-list-item-text" style="padding-right: 8px" layout="column">
+               <h4 class="md-subhead">{{ tx.timeStamp*1000 | date:'medium' }}</h4>
+               <p style="font-weight: 500; font-size: 12px">{{ tx.confirmations > 0 ? 'CONFIRMED':'PENDING' }}</p>
+               <p style="font-size: 12px">{{ tx.to == '0x'+wallet.address ? midEllipsis(tx.from) : midEllipsis(tx.to) }}</p>
+            </div>
+            <div class="md-secondary" layout="row">
+               <div class="md-body-1" md-colors="{color:'accent'}">{{tx.to == '0x'+wallet.address ? '+':'-'}}</div>
+               <div class="md-body-1" md-colors="{color:'accent'}">{{tx.value/1000000000000000000 | number:8}}</div>
+               <div class="md-body-1" style="padding: 0 8px; font-weight: 500;">ETH</div>
+            </div>
+         </md-list-item>
+
+      </md-list>
+
+   </md-content>
+</div>

@@ -1,0 +1,38 @@
+<div layout="column" layout-fill>
+
+   <md-toolbar class="md-primary" ng-show="showMenu()">
+      <div class="md-toolbar-tools">
+         <md-button class="md-icon-button md-36" ng-click="toggle()">
+            <md-icon class="material-icons md-36">menu</md-icon>
+         </md-button>
+         <h2 class="md-title">Home</h2>         
+      </div>
+   </md-toolbar>
+
+   <div layout="row" flex>
+
+      <md-sidenav
+           class="md-sidenav-left"
+           md-component-id="left"
+           md-is-locked-open="$mdMedia('gt-md')"
+           md-whiteframe="4">
+
+         <md-content layout-padding>
+            <md-list>
+               <md-list-item ng-click="navigateTo(item)" ng-repeat="item in menu">
+                  <md-icon class="material-icons md-36">{{item.icon}}</md-icon>
+                  <p> {{item.name}} </p>
+               </md-list-item>
+            </md-list>
+         </md-content>
+
+      </md-sidenav>
+
+      <md-content layout-fill layout="column">
+         <div ng-view layout-fill layout="column"></div> 
+      </md-content>
+
+   </div>
+
+
+</div>

@@ -1,0 +1,35 @@
+body {
+  font-family: "Roboto", "Helvetica Neue", "sans-serif";
+}
+
+
+.ether-icon {
+   max-width:40px !important;
+   max-height:40px !important; 
+   width: 100%;
+   height: auto;  
+}
+
+.nextix-icon {
+   max-width: 100px !important;
+   width: 30%;
+   height: auto;
+   margin: 0 0 3em 0;
+}
+
+.ether-wallet-banner {
+   max-width: 325px !important;
+   max-height: 100px !important;
+   width: 100%;
+   height: auto;
+   margin: auto;
+}
+
+.padded {
+   padding: 10px;
+}
+
+/* bug fix for list layout */
+.md-list-item-inner { 
+   overflow: hidden; 
+}

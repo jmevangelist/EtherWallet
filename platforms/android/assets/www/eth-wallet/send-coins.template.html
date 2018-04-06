@@ -1,0 +1,123 @@
+<div layout="column" layout-fill>
+
+   <simple-toolbar title="'Send Coins'"></simple-toolbar>
+
+   <div flex layout-padding layout="column">
+      <md-content flex>
+         <form name="sendEthForm" flex>
+            <fieldset ng-disabled="loading" layout="column" style="border: none;margin: 0;padding: 0;" flex>
+               <div layout="row">
+                  <md-input-container md-block flex>
+                    <label>Destination Address</label>
+                    <input class="md-caption" ng-model="destinationAddress" name="destinationAddress" required>
+                  </md-input-container>
+                  <md-button ng-click="openScanner()" class="md-fab md-accent md-mini" aria-label="qr">
+                     <md-icon md-svg-icon="qr" aria-label="qr"></md-icon>
+                  </md-button>   
+                </div>
+
+               <div> 
+                  <video id="preview" style="width: 100% !important;" ng-show="scannerOn"></video>
+               </div>
+               
+               <div>
+                  
+                  <div layout="row" layout-align="space-between center">
+
+                     <md-input-container md-block flex>
+                        <label>Amount</label>
+                        <input ng-model="amount" type="number" name="amount" ng-exc-min="0" ng-change=updateAmount() required>
+                        <div ng-messages="sendEthForm.amount.$error" role="alert">
+                           <div ng-message="ngExcMin">
+                              Amount should be greater than 0. 
+                           </div>
+                        </div>
+                     </md-input-container>
+                     
+                     <div>
+                        <md-menu>
+                           <md-button ng-click="openMenu($mdMenu, $event)" class="md-primary" style="min-width: 0 !important;">{{unit}}</md-button>
+                           <md-menu-content width="1" style="min-width: 0 !important;">
+                              <md-menu-item ng-repeat="u in units">
+                                 <md-button ng-click="setUnit(u)" style="text-align: right; min-width: 0 !important;">{{u}}</md-button>
+                              </md-menu-item>
+                           </md-menu-content>
+                        </md-menu>
+                     </div>
+
+                  </div>
+
+                  <div class="md-body-1" ng-if="unit=='ETH'">≈{{amount*rates.ETHinPHP | number:2}} PHP</div>
+                  <div class="md-body-1" ng-if="unit=='PHP'">≈{{amount/rates.ETHinPHP | number:8}} ETH</div>
+
+               </div>
+
+               <div layout="row" layout-align="space-between center">
+                  <md-input-container md-block flex>
+                     <label>Gas Limit</label>
+                     <input ng-model="gasLimit" name="gasLimit" type="number" min="{{gasLimitMin}}" required>
+                     <div ng-messages="sendEthForm.gasLimit.$error" role="alert">
+                        <div ng-message="min">
+                           Gas Limit should be greater than or equal to 21000 UNITS. 
+                        </div>
+                     </div>
+                  </md-input-container>
+                  <div class="md-button" style="min-width: 0 !important;">units</div>
+               </div>
+
+               <div layout="row" layout-align="space-between center">
+                  <md-input-container md-block flex>
+                    <label>Gas Price</label>
+                    <input ng-model="gasPrice" type="number" name="gasPrice" min="1" required>
+                    <div ng-messages="sendEthForm.gasLimit.$error" role="alert">
+                        <div ng-message="min">
+                           Gas price should be greater than or equal to 1 GWEI. 
+                        </div>
+                     </div>
+                  </md-input-container>
+                  <div class="md-button" style="min-width: 0 !important;">gwei</div>
+               </div>
+
+               <div layout="row" layout-align="space-between center">
+                  <div class="md-body-1">Max Transaction Fee</div>
+                  <div layout="column">
+                     <div layout="row" layout-align="end center">
+                        <div class="md-body-1" md-colors="{color:'accent'}">{{gasPrice*0.000000001*gasLimit | number:8}}</div>
+                        <div class="md-body-1" style="padding: 0 8px; font-weight: 500;">ETH</div>
+                     </div>
+                     <div layout="row" layout-align="end center">
+                        <div class="md-body-1">{{gasPrice*0.000000001*gasLimit*rates.ETHinPHP | number:2}}</div>
+                        <div class="md-body-1" style="padding: 0 8px; font-weight: 500;">PHP</div>
+                     </div>
+                  </div>
+               </div>
+
+               <div layout="row" layout-align="space-between center">
+                  <div class="md-body-1">Max Total</div>
+                  <div layout="column">
+                     <div layout="row" layout-align="end center">
+                        <div class="md-body-1" md-colors="{color:'accent'}">{{ amountInETH + (gasPrice*0.000000001*gasLimit) | number:8}}</div>
+                        <div class="md-body-1" style="padding: 0 8px; font-weight: 500;">ETH</div>
+                     </div>
+                     <div layout="row" layout-align="end center">
+                        <div class="md-body-1">{{ ( amountInETH + (gasPrice*0.000000001*gasLimit) )*rates.ETHinPHP | number:2}}</div>
+                        <div class="md-body-1" style="padding: 0 8px; font-weight: 500;">PHP</div>
+                     </div>
+                  </div>
+               </div>
+
+               
+            </fieldset>
+         </form>
+      </md-content>
+
+      <div layout="row" layout-align="end center">
+            <md-button layout="row" layout-align="space-around center" class="md-primary md-raised" ng-click="send()" ng-disabled="sendEthForm.$invalid">
+               <div>Send</div>
+               <md-progress-circular ng-if="loading" class="md-hue-2" md-diameter="20px"></md-progress-circular>
+            </md-button>
+         </div>
+      </div>
+   </div>
+
+</div>

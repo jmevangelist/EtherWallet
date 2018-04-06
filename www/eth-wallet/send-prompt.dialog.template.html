@@ -1,0 +1,31 @@
+<md-dialog aria-label="send eth">
+
+   <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>Send Eth</h2>
+         <span flex></span>
+         <md-button class="md-icon-button md-36" ng-click="cancel()">
+            <md-icon class="material-icons md-36">close</md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+
+   <md-dialog-content>
+      <div layout="column" layout-align="center center" layout-fill layout-padding flex>
+
+         <md-input-container>
+           <label>Destination Address</label>
+           <input ng-model="destinationAddress">
+         </md-input-container>
+
+         <md-input-container>
+           <label>Amount</label>
+           <input ng-model="amount" type="number">
+         </md-input-container>
+
+         <md-button class="md-warn md-raised" ng-click="send({address: destinationAddress, amount:amount})" ng-disabled="!destinationAddress && !amount">SEND</md-button>
+
+      </div>
+   </md-dialog-content>
+
+</md-dialog>

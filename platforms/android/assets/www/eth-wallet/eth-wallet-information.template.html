@@ -1,0 +1,43 @@
+<div layout-fill layout="column">
+
+   <div layout="column" layout-padding>
+      <div class="md-subheader">Your Ether Balance:</div>
+      <div layout="row" layout-align="center center">
+         <!-- <span flex></span> -->
+         <img class="ether-icon" src="css/res/ether-icon-small.png">
+         <div class="md-display-1">{{balance | number:6}}</div>
+         <!-- <span flex></span> -->
+      </div>      
+      <div layout="row" layout-align="center center">
+         <div class="md-caption">{{balance * rates.ETHinPHP | currency:'₱':2}}</div>
+      </div>
+   </div>
+
+   <div layout="column" layout-padding>
+      <div class="md-subheader">Your Ethereum Address:</div>
+      <img ng-src="https://chart.googleapis.com/chart?cht=qr&chl={{'0x' + wallet.address }}&chs=160x160&chld=L|0" style="max-width: 100px;height: auto;">
+      <div class="md-caption">{{ '0x' + wallet.address }}</div> 
+   </div>
+   
+   
+   <md-divider></md-divider>
+
+   <div layout="row" layout-align="space-around center" layout-padding>
+      <div><md-button class="md-warn md-raised" ng-click="sendEth()">Send</md-button></div>
+   </div>
+
+   <md-divider></md-divider>
+
+   <div layout="column" layout-padding>
+      <div class="md-subheader">Exchange Rate:</div>
+      <div layout="row" layout-align="start center">
+         <div class="md-title">1.00 ETH = {{rates.ETHinPHP}} PHP</div>
+         <md-button class="md-icon-button md-36 md-primary" ng-click="refresh()">
+            <md-icon class="material-icons md-36">refresh</md-icon>
+         </md-button>
+      </div>
+      <div class="md-caption">as of {{ rates.dateOfLastRefresh | date:'medium'}}</div>
+   </div>
+
+
+</div>

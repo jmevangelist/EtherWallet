@@ -1,0 +1,51 @@
+<md-dialog aria-label="send eth">
+   <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>Tx Details</h2>
+         <span flex></span>
+         <md-button class="md-icon-button md-36" ng-click="cancel()">
+            <md-icon class="material-icons md-36">close</md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+
+   <md-dialog-content>
+      <div layout="column" layout-align="center stretch" layout-fill layout-padding flex>
+
+         <div layout="row" layout-align="start center">
+            <div class="md-body-1" flex="25" style="padding-right: 8px">Hash</div>
+            <div class="md-body-2" flex="75"><p style="word-wrap: break-word;">{{tx.hash}}</p></div>
+         </div> 
+         <div layout="row" layout-align="start center" >
+            <div class="md-body-1" flex="25" style="padding-right: 8px">From</div>
+            <div class="md-body-2" flex="75"><p style="word-wrap: break-word;">{{tx.from}}</p></div>
+         </div>
+         <div layout="row" layout-align="start center" >
+            <div class="md-body-1" flex="25" style="padding-right: 8px">To</div>
+            <div class="md-body-2" flex="75"><p style="word-wrap: break-word;">{{tx.to}}</p></div>
+         </div>
+         <div layout="row" layout-align="start center" >
+            <div class="md-body-1" flex="25" style="padding-right: 8px">Time Stamp</div>
+            <div class="md-body-2" flex="75">{{tx.timeStamp*1000 | date:'medium'}}</div>
+         </div>
+         <div layout="row" layout-align="start center" >
+            <div class="md-body-1" flex="25" style="padding-right: 8px">Block</div>
+            <div class="md-body-2" flex="75">{{tx.blockNumber}}</div>
+         </div>
+         <div layout="row" layout-align="start center" >
+            <div class="md-body-1" flex="25" style="padding-right: 8px">Value</div>
+            <div class="md-body-2" flex="75">{{tx.value/1000000000000000000}}</div>
+         </div>
+         <div layout="row" layout-align="start center" >
+            <div class="md-body-1" flex="25" style="padding-right: 8px">Tx Fee</div>
+            <div class="md-body-2" flex="75">{{tx.gasPrice*tx.gasUsed/1000000000000000000}}</div>
+         </div>
+
+      </div>
+   </md-dialog-content>
+
+   <md-dialog-actions layout="row">
+      <div><md-button class="md-primary" ng-href="{{url}}">view tx in blockchain</md-button></div>
+   </md-dialog-actions>
+
+</md-dialog>
